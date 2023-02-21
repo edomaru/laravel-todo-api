@@ -19,10 +19,8 @@ use App\Http\Controllers\Api\V1\CompleteTaskController;
 |
 */
 
-Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
-    Route::apiResource('/tasks', TaskController::class);
-    Route::patch('/tasks/{task}/complete', CompleteTaskController::class);
-});
+require __DIR__ . '/api/v1.php';
+require __DIR__ . '/api/v2.php';
 
 Route::prefix('auth')->group(function () {
     Route::post('/login', LoginController::class);
