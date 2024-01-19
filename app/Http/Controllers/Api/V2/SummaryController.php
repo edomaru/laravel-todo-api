@@ -14,7 +14,7 @@ class SummaryController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $tasks = $request->user()->tasksSummary();
+        $tasks = $request->user()->tasksSummary($request->period);
 
         return $tasks->mapToGroups(function ($item, $key) {
             return [
