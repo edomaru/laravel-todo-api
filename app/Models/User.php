@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -57,7 +58,7 @@ class User extends Authenticatable
             'lastmonth', 'last-month' => [Carbon::now()->startOfMonth()->subMonthsNoOverflow(), Carbon::now()->subMonthsNoOverflow()->endOfMonth()],
             default => [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()],
         };
-        
+
         return $this->tasks()
             ->whereBetween('created_at', [$start, $end])
             ->latest()
